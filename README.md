@@ -17,6 +17,7 @@ And if you are like me, you probably feel more comfortable writing python code t
 in a UI. So I decided to just go back to jupyter and directly call the pipelines that I need.
 
 This is the repo that gathers all the helper functions that I use in my jupyter notebooks, with
-some examples of the consuming notebooks.
+some examples of the consuming notebooks. It is meant to be used by
+[this container image](https://github.com/chaserhkj/containers/tree/main/service/jupyter)
 
 No documentation is planned, use them at your own risk.
