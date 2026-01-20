@@ -4,7 +4,7 @@
 # ///
 
 # Script to setup kernel for a sub-lab
-# Run with uv: uv run setup_kernel.py
+# Run with uv: uv run setup_kernel.py <sub-lab-name>
 
 import os
 import subprocess
@@ -29,7 +29,7 @@ def main(sub_lab: str) -> int:
         print(f"Sub lab {sub_lab} not found")
         return 1
     os.chdir(lab_dir)
-    sh("uv sync")
+    sh("uv pip install . -e")
     sh(f"uv pip install {" ".join(kernel_deps)}")
     sh("uv run python3 -m ipykernel install --prefix /usr/local"+
         f"--env VIRTUAL_ENV {lab_dir}/.venv"+
