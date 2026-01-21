@@ -5,7 +5,7 @@ description = "Jupyter helper lib for use with diffusers"
 authors = [
     { name = "Chaser Huang", email = "huangkangjing@gmail.com" }
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dependencies = [
     "diffusers",
     "transformers",
@@ -24,19 +24,37 @@ cu130-rel-runtime = [
 requires = ["uv_build>=0.9.8,<0.10.0"]
 build-backend = "uv_build"
 
+[tool.uv]
+required-environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+conflicts = [
+    [
+        { extra = "rocm-gfx1151-runtime" },
+        { extra = "cu130-rel-runtime" },
+    ]
+]
+
 [tool.uv.sources]
 diffusers = { git = "https://github.com/huggingface/diffusers" }
 transformers = { git = "https://github.com/huggingface/transformers" }
 accelerate = { git = "https://github.com/huggingface/accelerate" }
 torch = [ 
-    { extra = "rocm-gfx1151-runtime", index = "https://rocm.nightlies.amd.com/v2/gfx1151/" },
-    { extra = "cu130-rel-runtime", index = "https://download.pytorch.org/whl/cu130" },
+    { extra = "rocm-gfx1151-runtime", index = "therock-gfx1151" },
+    { extra = "cu130-rel-runtime", index = "torch-cu130" },
 ]
 torchvision = [
-    { extra = "rocm-gfx1151-runtime", index = "https://rocm.nightlies.amd.com/v2/gfx1151/" },
-    { extra = "cu130-rel-runtime", index = "https://download.pytorch.org/whl/cu130" },
+    { extra = "rocm-gfx1151-runtime", index = "therock-gfx1151" },
+    { extra = "cu130-rel-runtime", index = "torch-cu130" },
 ]
 torchaudio = [
-    { extra = "rocm-gfx1151-runtime", index = "https://rocm.nightlies.amd.com/v2/gfx1151/" },
-    { extra = "cu130-rel-runtime", index = "https://download.pytorch.org/whl/cu130" },
+    { extra = "rocm-gfx1151-runtime", index = "therock-gfx1151" },
+    { extra = "cu130-rel-runtime", index = "torch-cu130" },
 ]
+
+
+[[tool.uv.index]]
+name = "therock-gfx1151"
+url = "https://rocm.nightlies.amd.com/v2/gfx1151"
+
+[[tool.uv.index]]
+name = "torch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
