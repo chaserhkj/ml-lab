@@ -12,7 +12,7 @@ import argparse
 from sys import stderr
 
 kernel_deps = [
-    "ipykernel", "sidecar", "ipywidgets"
+    "ipykernel", "sidecar", "ipywidgets", "python-dotenv"
 ]
 
 def sh(command: str) -> None:
