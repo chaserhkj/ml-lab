@@ -30,11 +30,13 @@ def main(sub_lab: str) -> int:
         print(f"Sub lab {sub_lab} not found")
         return 1
     os.chdir(lab_dir)
-    sh(f"uv pip install .[{runtime_type}-runtime] -e")
+    os.environ["VIRTUAL_ENV"] = f"{lab_dir}/.venv"
+    sh("uv venv --clear")
+    sh(f"uv sync --extra {runtime_type}-runtime")
     sh(f"uv pip install {" ".join(kernel_deps)}")
     sh("uv run python3 -m ipykernel install --prefix /usr/local"+
-        f"--env VIRTUAL_ENV {lab_dir}/.venv"+
-        f"--name {sub_lab} --display-name 'Python ({sub_lab})'")
+        f" --env VIRTUAL_ENV {lab_dir}/.venv"+
+        f" --name {sub_lab} --display-name 'Python ({sub_lab})'")
     return 0
 
 if __name__ == "__main__":
