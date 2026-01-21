@@ -1,0 +1,42 @@
+[project]
+name = "diffusers-lab"
+version = "0.1.0"
+description = "Jupyter helper lib for use with diffusers"
+authors = [
+    { name = "Chaser Huang", email = "huangkangjing@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "diffusers",
+    "transformers",
+    "accelerate",
+]
+
+[project.optional-dependencies]
+rocm-gfx1151-runtime = [
+    "torch", "torchvision", "torchaudio"
+]
+cu130-rel-runtime = [
+    "torch", "torchvision", "torchaudio"
+]
+
+[build-system]
+requires = ["uv_build>=0.9.8,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+diffusers = { git = "https://github.com/huggingface/diffusers" }
+transformers = { git = "https://github.com/huggingface/transformers" }
+accelerate = { git = "https://github.com/huggingface/accelerate" }
+torch = [ 
+    { extra = "rocm-gfx1151-runtime", index = "https://rocm.nightlies.amd.com/v2/gfx1151/" },
+    { extra = "cu130-rel-runtime", index = "https://download.pytorch.org/whl/cu130" },
+]
+torchvision = [
+    { extra = "rocm-gfx1151-runtime", index = "https://rocm.nightlies.amd.com/v2/gfx1151/" },
+    { extra = "cu130-rel-runtime", index = "https://download.pytorch.org/whl/cu130" },
+]
+torchaudio = [
+    { extra = "rocm-gfx1151-runtime", index = "https://rocm.nightlies.amd.com/v2/gfx1151/" },
+    { extra = "cu130-rel-runtime", index = "https://download.pytorch.org/whl/cu130" },
+]

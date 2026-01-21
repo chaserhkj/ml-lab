@@ -21,6 +21,7 @@ def sh(command: str) -> None:
 def main(sub_lab: str) -> int:
     # Set from environment
     base_dir = os.environ.get("DATA_ROOT", "/work")
+    runtime_type = os.environ.get("RUNTIME_TYPE", "rocm")
     repo_dir = f"{base_dir}/ml-lab"
     if not os.path.isdir(repo_dir):
         sh(f"git clone https://github.com/chaserhkj/ml-lab/ {repo_dir}")
@@ -29,7 +30,7 @@ def main(sub_lab: str) -> int:
         print(f"Sub lab {sub_lab} not found")
         return 1
     os.chdir(lab_dir)
-    sh("uv pip install . -e")
+    sh(f"uv pip install .[{runtime_type}-runtime] -e")
     sh(f"uv pip install {" ".join(kernel_deps)}")
     sh("uv run python3 -m ipykernel install --prefix /usr/local"+
         f"--env VIRTUAL_ENV {lab_dir}/.venv"+
