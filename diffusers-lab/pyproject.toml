@@ -10,6 +10,8 @@ dependencies = [
     "diffusers",
     "transformers",
     "accelerate",
+    "safetensors",
+    "jinja2"
 ]
 
 [project.optional-dependencies]

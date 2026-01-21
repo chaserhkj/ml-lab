@@ -1,0 +1,17 @@
+{% macro il_pos_prefix(reality=False) -%}
+masterpiece, best quality, amazing quality, 4k, very aesthetic, high resolution,
+ultra-detailed, absurdres, newest, scenery
+{% if reality %}photorealistic{% endif %}
+{%- endmacro %}
+{% macro il_pos_postfix(reality=False) -%}
+BREAK, depth of field
+{% if reality %}photorealistic details{% endif %}
+{%- endmacro %}
+{% macro il_neg(reality=False) -%}
+{% if reality %}3d, rendered, anime{% endif %}
+monochrome, modern, recent, old, oldest, cartoon, graphic, text, painting, crayon, graphite,
+abstract, glitch, deformed, mutated, ugly, disfigured, long body, lowres, bad anatomy,
+(bad hands, missing fingers, extra fingers, extra digits, fewer digits:1.2), cropped,
+very displeasing, (worst quality, bad quality:1.2), sketch, jpeg artifacts, signature,
+watermark, username, (censored, bar_censor, mosaic_censor:1.2), conjoined, bad ai-generated
+{%- endmacro %}

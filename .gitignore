@@ -1,2 +1,3 @@
 *.ipynb
 !*.example.ipynb
+__pycache__/

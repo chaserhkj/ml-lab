@@ -104,6 +104,8 @@ source = { editable = "." }
 dependencies = [
     { name = "accelerate" },
     { name = "diffusers" },
+    { name = "jinja2" },
+    { name = "safetensors" },
     { name = "transformers" },
 ]
 
@@ -128,6 +130,8 @@ rocm-gfx1151-runtime = [
 requires-dist = [
     { name = "accelerate", git = "https://github.com/huggingface/accelerate" },
     { name = "diffusers", git = "https://github.com/huggingface/diffusers" },
+    { name = "jinja2" },
+    { name = "safetensors" },
     { name = "torch", marker = "extra == 'cu130-rel-runtime'", index = "https://download.pytorch.org/whl/cu130", conflict = { package = "diffusers-lab", extra = "cu130-rel-runtime" } },
     { name = "torch", marker = "extra == 'rocm-gfx1151-runtime'", index = "https://rocm.nightlies.amd.com/v2/gfx1151", conflict = { package = "diffusers-lab", extra = "rocm-gfx1151-runtime" } },
     { name = "torchaudio", marker = "extra == 'cu130-rel-runtime'", index = "https://download.pytorch.org/whl/cu130", conflict = { package = "diffusers-lab", extra = "cu130-rel-runtime" } },
