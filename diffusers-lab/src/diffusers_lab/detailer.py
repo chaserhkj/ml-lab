@@ -67,6 +67,7 @@ class SDXLDetailer(object):
                 strength = strength,
                 additional_diffusion_params = additional_diffusion_params,
                 preview_mask = preview_mask,
+                soft_blend_radius = soft_blend_radius,
             )
             detailed.paste(detailed_patch, (int(box[0]), int(box[1])), blend_mask)
         return detailed
