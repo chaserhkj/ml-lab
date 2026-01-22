@@ -62,7 +62,6 @@ class SDXLDetailer(object):
                 pos_prompt = pos_prompt, neg_prompt = neg_prompt,
                 generator = generator,
                 context_ratio = context_ratio,
-                soft_blend_radis = soft_blend_radis,
                 num_inference_steps = num_inference_steps,
                 guidance_scale = guidance_scale,
                 strength = strength,
@@ -121,6 +120,6 @@ class SDXLDetailer(object):
         detailed_patch = inpaint_pipe(**params)[0][0] # pyright: ignore[reportIndexIssue]
         assert isinstance(detailed_patch, Image.Image) 
         detailed_final = detailed_patch.resize(cropped.size, Image.Resampling.LANCZOS)
-        blend_mask = cropped_mask.filter(ImageFilter.GaussianBlur(radius=soft_blend_radis))
+        blend_mask = cropped_mask.filter(ImageFilter.GaussianBlur(radius=soft_blend_radius))
         print(f"Detailer: Finished mask with bbox {tuple(box)}")
         return (detailed_final, blend_mask, tuple(box))
