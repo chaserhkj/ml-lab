@@ -7,7 +7,7 @@ from transformers import Sam3Processor, Sam3Model, logging
 from PIL import Image, ImageFilter
 from typing import Any
 
-from . import scale_largest_dimension_to
+from . import scale_largest_dimension_to, preview_image
 from .conditioning import get_sdxl_prompt_embeds
 # pyright: reportUnknownMemberType=none, reportAny=none, reportExplicitAny=none
 # pyright: reportUnknownArgumentType=none, reportUnknownVariableType=none
@@ -32,6 +32,7 @@ class SDXLDetailer(object):
                 guidance_scale: float = 2.5,
                 strength: float = 0.4,
                 additional_diffusion_params: dict[str, Any] | None = None,
+                preview_mask: bool = False,
                 soft_blend_radius: int = 3) -> Image.Image:
         model = Sam3Model.from_pretrained("facebook/sam3")
         model = model.to("cuda") # pyright: ignore[reportArgumentType]
@@ -65,6 +66,7 @@ class SDXLDetailer(object):
                 guidance_scale = guidance_scale,
                 strength = strength,
                 additional_diffusion_params = additional_diffusion_params,
+                preview_mask = preview_mask,
             )
             detailed.paste(detailed_patch, (int(box[0]), int(box[1])), blend_mask)
         return detailed
@@ -79,9 +81,12 @@ class SDXLDetailer(object):
             guidance_scale: float = 2.5,
             strength: float = 0.4,
             additional_diffusion_params: dict[str, Any] | None = None,
+            preview_mask: bool = False,
             soft_blend_radius: int = 3) -> tuple[Image.Image, Image.Image, tuple[int, int, int, int]]:
         boxes = masks_to_boxes(mask.unsqueeze(0))
         mask_image = Image.fromarray(mask.numpy().astype(np.uint8)*255, mode="L")
+        if preview_mask:
+            preview_mask(mask_image)
         box = boxes[0].cpu().numpy()
         print(f"Detailer: Processing mask with bbox {tuple(box)}")
         growth_w = int((box[2] - box[0]) * context_ratio)
