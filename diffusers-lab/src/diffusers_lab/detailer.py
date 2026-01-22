@@ -22,7 +22,7 @@ class SDXLDetailer(object):
         self._pipeline: StableDiffusionXLPipeline = pipeline
         self._segment_prompt: str = segment_prompt
         self._segment_threshold: float = segment_threshold
-    def __run__(self,
+    def __call__(self,
                 image: Image.Image,
                 pos_prompt: str, neg_prompt: str,
                 generator: None | torch.Generator = None,
