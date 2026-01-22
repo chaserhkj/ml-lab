@@ -23,10 +23,12 @@ class SDXLDetailer(object):
     def __init__(self,
             pipeline: StableDiffusionXLPipeline,
             segment_prompt: str,
-            segment_threshold: float = 0.5) -> None:
+            segment_threshold: float = 0.5,
+            mask_threshold: float = 0.5) -> None:
         self._pipeline: StableDiffusionXLPipeline = pipeline
         self._segment_prompt: str = segment_prompt
         self._segment_threshold: float = segment_threshold
+        self._mask_threshold: float = mask_threshold
     def __call__(self,
                 image: Image.Image,
                 pos_prompt: str, neg_prompt: str,
@@ -42,19 +44,23 @@ class SDXLDetailer(object):
                 force_patch_ratio: float | None = None,
                 soft_blend_radius: int = 3) -> Image.Image:
         model = Sam3Model.from_pretrained("facebook/sam3")
-        model = model.to("cuda") # pyright: ignore[reportArgumentType]
+        model = model.to("cuda", dtype=torch.float16) # pyright: ignore[reportArgumentType]
         processor = Sam3Processor.from_pretrained("facebook/sam3")
 
         inputs = processor(image, text=self._segment_prompt, return_tensors="pt").to("cuda")
         print(f"Detailer: Segmenting using prompt '{self._segment_prompt}'")
         with torch.no_grad():
             outputs = model(**inputs)
-        semantic_results = processor.post_process_semantic_segmentation(
+        results = processor.post_process_instance_segmentation(
             outputs,
             target_sizes=inputs["original_sizes"].tolist(), #pyright: ignore[reportAttributeAccessIssue]
-            threshold=self._segment_threshold
-        )
-        masks = torch.stack(semantic_results)
+            threshold=self._segment_threshold,
+            mask_threshold=self._mask_threshold
+        )[0]
+        for i, s in enumerate(results["scores"]):
+            bbox = results["boxes"][i].cpu().numpy().tolist()
+            print(f"Detailer: Segmented {s.item()} @ {bbox}")
+        masks = results["masks"]
         print(f"Detailer: Segmented {len(masks)} masks")
         if merge_mask:
             print("Detailer: Merging all masks")
@@ -115,6 +121,7 @@ class SDXLDetailer(object):
         cropped_mask = mask_image.crop(tuple(box))
 
         inpaint_pipe = StableDiffusionXLInpaintPipeline.from_pipe(self._pipeline)
+        inpaint_pipe = inpaint_pipe.to(dtype=torch.float16)
         assert isinstance(inpaint_pipe, StableDiffusionXLInpaintPipeline)
         upscaled, upscale = scale_largest_dimension_to(cropped)
         upscaled_mask, _ = scale_largest_dimension_to(cropped_mask)
