@@ -2,16 +2,22 @@ version = 1
 revision = 3
 requires-python = ">=3.13"
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and sys_platform != 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
-    "(python_full_version < '3.14' and platform_machine != 'x86_64' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version < '3.14' and sys_platform != 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
+    "python_full_version >= '3.14' and sys_platform == 'win32' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
+    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
+    "python_full_version < '3.14' and sys_platform == 'win32' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
+    "(python_full_version < '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
     "python_full_version >= '3.14' and platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
     "python_full_version < '3.14' and platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
-    "(python_full_version >= '3.15' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and platform_machine != 'aarch64' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and platform_python_implementation != 'CPython' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and sys_platform != 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
-    "(python_full_version < '3.14' and platform_machine != 'aarch64' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version < '3.14' and platform_python_implementation != 'CPython' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version < '3.14' and sys_platform != 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
+    "python_full_version >= '3.14' and sys_platform == 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
+    "(python_full_version >= '3.15' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and platform_machine != 'aarch64' and sys_platform == 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and platform_python_implementation != 'CPython' and sys_platform == 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
+    "python_full_version < '3.14' and sys_platform == 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
+    "(python_full_version < '3.14' and platform_machine != 'aarch64' and sys_platform == 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version < '3.14' and platform_python_implementation != 'CPython' and sys_platform == 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
     "python_full_version == '3.14.*' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
     "python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
-    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and sys_platform != 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
-    "(python_full_version < '3.14' and platform_machine != 'x86_64' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version < '3.14' and sys_platform != 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
+    "python_full_version >= '3.14' and sys_platform == 'win32' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
+    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
+    "python_full_version < '3.14' and sys_platform == 'win32' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
+    "(python_full_version < '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime')",
     "python_full_version >= '3.14' and platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
     "python_full_version < '3.14' and platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime' and extra != 'extra-13-diffusers-lab-rocm-gfx1151-runtime'",
 ]
@@ -1043,7 +1049,7 @@ name = "nvidia-cudnn-cu13"
 version = "9.13.0.50"
 source = { registry = "https://download.pytorch.org/whl/cu130" }
 dependencies = [
-    { name = "nvidia-cublas", marker = "extra == 'extra-13-diffusers-lab-cu130-rel-runtime'" },
+    { name = "nvidia-cublas", marker = "(sys_platform != 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime') or (extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')" },
 ]
 wheels = [
     { url = "https://pypi.nvidia.com/nvidia-cudnn-cu13/nvidia_cudnn_cu13-9.13.0.50-py3-none-manylinux_2_27_aarch64.whl", hash = "sha256:33f0aa0b64230101b348648fd0693342188071d3f8a137c0cf50051c24b3584b" },
@@ -1056,7 +1062,7 @@ name = "nvidia-cufft"
 version = "12.0.0.15"
 source = { registry = "https://download.pytorch.org/whl/cu130" }
 dependencies = [
-    { name = "nvidia-nvjitlink", marker = "extra == 'extra-13-diffusers-lab-cu130-rel-runtime'" },
+    { name = "nvidia-nvjitlink", marker = "(sys_platform != 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime') or (extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')" },
 ]
 wheels = [
     { url = "https://pypi.nvidia.com/nvidia-cufft/nvidia_cufft-12.0.0.15-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:1885731254835797572ff075f3daf43a2a0a2801210dea26971940dae7e1a367" },
@@ -1088,9 +1094,9 @@ name = "nvidia-cusolver"
 version = "12.0.3.29"
 source = { registry = "https://download.pytorch.org/whl/cu130" }
 dependencies = [
-    { name = "nvidia-cublas", marker = "extra == 'extra-13-diffusers-lab-cu130-rel-runtime'" },
-    { name = "nvidia-cusparse", marker = "extra == 'extra-13-diffusers-lab-cu130-rel-runtime'" },
-    { name = "nvidia-nvjitlink", marker = "extra == 'extra-13-diffusers-lab-cu130-rel-runtime'" },
+    { name = "nvidia-cublas", marker = "(sys_platform != 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime') or (extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')" },
+    { name = "nvidia-cusparse", marker = "(sys_platform != 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime') or (extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')" },
+    { name = "nvidia-nvjitlink", marker = "(sys_platform != 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime') or (extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')" },
 ]
 wheels = [
     { url = "https://pypi.nvidia.com/nvidia-cusolver/nvidia_cusolver-12.0.3.29-py3-none-manylinux_2_27_aarch64.whl", hash = "sha256:3bb6e65ce0beaeafdd069b320246e8f17c1cd30ddb27a0539143a3706733a4d8" },
@@ -1103,7 +1109,7 @@ name = "nvidia-cusparse"
 version = "12.6.2.49"
 source = { registry = "https://download.pytorch.org/whl/cu130" }
 dependencies = [
-    { name = "nvidia-nvjitlink", marker = "extra == 'extra-13-diffusers-lab-cu130-rel-runtime'" },
+    { name = "nvidia-nvjitlink", marker = "(sys_platform != 'win32' and extra == 'extra-13-diffusers-lab-cu130-rel-runtime') or (extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')" },
 ]
 wheels = [
     { url = "https://pypi.nvidia.com/nvidia-cusparse/nvidia_cusparse-12.6.2.49-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:5d3269c19283a0057fb5ebfb003ae2a10c97a28a6958f4238354826b055827c7" },
@@ -1190,7 +1196,7 @@ name = "pexpect"
 version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ptyprocess" },
+    { name = "ptyprocess", marker = "sys_platform != 'win32' or (extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [
@@ -1586,8 +1592,10 @@ name = "rocm"
 version = "7.11.0a20260120"
 source = { registry = "https://rocm.nightlies.amd.com/v2/gfx1151" }
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'x86_64') or (python_full_version >= '3.14' and sys_platform != 'linux')",
-    "(python_full_version < '3.14' and platform_machine != 'x86_64') or (python_full_version < '3.14' and sys_platform != 'linux')",
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
+    "python_full_version < '3.14' and sys_platform == 'win32'",
+    "(python_full_version < '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 dependencies = [
     { name = "rocm-sdk-core", version = "7.11.0a20260120", source = { registry = "https://rocm.nightlies.amd.com/v2/gfx1151" }, marker = "(platform_machine != 'x86_64' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime') or (sys_platform != 'linux' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (sys_platform != 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime') or (extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')" },
@@ -1617,8 +1625,10 @@ name = "rocm-sdk-core"
 version = "7.11.0a20260120"
 source = { registry = "https://rocm.nightlies.amd.com/v2/gfx1151" }
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'x86_64') or (python_full_version >= '3.14' and sys_platform != 'linux')",
-    "(python_full_version < '3.14' and platform_machine != 'x86_64') or (python_full_version < '3.14' and sys_platform != 'linux')",
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
+    "python_full_version < '3.14' and sys_platform == 'win32'",
+    "(python_full_version < '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 wheels = [
     { url = "https://rocm.nightlies.amd.com/v2/gfx1151/rocm_sdk_core-7.11.0a20260120-py3-none-linux_x86_64.whl" },
@@ -1643,8 +1653,10 @@ name = "rocm-sdk-libraries-gfx1151"
 version = "7.11.0a20260120"
 source = { registry = "https://rocm.nightlies.amd.com/v2/gfx1151" }
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'x86_64') or (python_full_version >= '3.14' and sys_platform != 'linux')",
-    "(python_full_version < '3.14' and platform_machine != 'x86_64') or (python_full_version < '3.14' and sys_platform != 'linux')",
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
+    "python_full_version < '3.14' and sys_platform == 'win32'",
+    "(python_full_version < '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 wheels = [
     { url = "https://rocm.nightlies.amd.com/v2/gfx1151/rocm_sdk_libraries_gfx1151-7.11.0a20260120-py3-none-linux_x86_64.whl" },
@@ -1865,8 +1877,10 @@ name = "torch"
 version = "2.9.1+cu130"
 source = { registry = "https://download.pytorch.org/whl/cu130" }
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'aarch64') or (python_full_version >= '3.15' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and platform_python_implementation != 'CPython') or (python_full_version >= '3.14' and sys_platform != 'linux')",
-    "(python_full_version < '3.14' and platform_machine != 'aarch64') or (python_full_version < '3.14' and platform_python_implementation != 'CPython') or (python_full_version < '3.14' and sys_platform != 'linux')",
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "(python_full_version >= '3.15' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version >= '3.14' and platform_python_implementation != 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
+    "python_full_version < '3.14' and sys_platform == 'win32'",
+    "(python_full_version < '3.14' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version < '3.14' and platform_python_implementation != 'CPython' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
     "python_full_version == '3.14.*' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
     "python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
 ]
@@ -1939,8 +1953,10 @@ name = "torch"
 version = "2.9.1+rocm7.11.0a20260120"
 source = { registry = "https://rocm.nightlies.amd.com/v2/gfx1151" }
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'x86_64') or (python_full_version >= '3.14' and sys_platform != 'linux')",
-    "(python_full_version < '3.14' and platform_machine != 'x86_64') or (python_full_version < '3.14' and sys_platform != 'linux')",
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
+    "python_full_version < '3.14' and sys_platform == 'win32'",
+    "(python_full_version < '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 dependencies = [
     { name = "filelock", marker = "(platform_machine != 'x86_64' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime') or (sys_platform != 'linux' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime') or (sys_platform != 'linux' and extra != 'extra-13-diffusers-lab-cu130-rel-runtime') or (extra == 'extra-13-diffusers-lab-cu130-rel-runtime' and extra == 'extra-13-diffusers-lab-rocm-gfx1151-runtime')" },
@@ -1977,8 +1993,10 @@ name = "torchaudio"
 version = "2.9.0+rocm7.11.0a20260120"
 source = { registry = "https://rocm.nightlies.amd.com/v2/gfx1151" }
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'x86_64') or (python_full_version >= '3.14' and sys_platform != 'linux')",
-    "(python_full_version < '3.14' and platform_machine != 'x86_64') or (python_full_version < '3.14' and sys_platform != 'linux')",
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
+    "python_full_version < '3.14' and sys_platform == 'win32'",
+    "(python_full_version < '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 dependencies = [
     { name = "torch", version = "2.9.1+rocm7.11.0a20260120", source = { registry = "https://rocm.nightlies.amd.com/v2/gfx1151" }, marker = "platform_machine != 'x86_64' or sys_platform != 'linux'" },
@@ -2010,8 +2028,10 @@ name = "torchaudio"
 version = "2.9.1+cu130"
 source = { registry = "https://download.pytorch.org/whl/cu130" }
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'aarch64') or (python_full_version >= '3.15' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and platform_python_implementation != 'CPython') or (python_full_version >= '3.14' and sys_platform != 'linux')",
-    "(python_full_version < '3.14' and platform_machine != 'aarch64') or (python_full_version < '3.14' and platform_python_implementation != 'CPython') or (python_full_version < '3.14' and sys_platform != 'linux')",
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "(python_full_version >= '3.15' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version >= '3.14' and platform_python_implementation != 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
+    "python_full_version < '3.14' and sys_platform == 'win32'",
+    "(python_full_version < '3.14' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version < '3.14' and platform_python_implementation != 'CPython' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 dependencies = [
     { name = "torch", version = "2.9.1+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "python_full_version >= '3.15' or platform_machine != 'aarch64' or platform_python_implementation != 'CPython' or sys_platform != 'linux'" },
@@ -2050,8 +2070,10 @@ name = "torchvision"
 version = "0.24.0+rocm7.11.0a20260120"
 source = { registry = "https://rocm.nightlies.amd.com/v2/gfx1151" }
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'x86_64') or (python_full_version >= '3.14' and sys_platform != 'linux')",
-    "(python_full_version < '3.14' and platform_machine != 'x86_64') or (python_full_version < '3.14' and sys_platform != 'linux')",
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "(python_full_version >= '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
+    "python_full_version < '3.14' and sys_platform == 'win32'",
+    "(python_full_version < '3.14' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 dependencies = [
     { name = "numpy", marker = "platform_machine != 'x86_64' or sys_platform != 'linux'" },
@@ -2087,8 +2109,10 @@ name = "torchvision"
 version = "0.24.1+cu130"
 source = { registry = "https://download.pytorch.org/whl/cu130" }
 resolution-markers = [
-    "(python_full_version >= '3.14' and platform_machine != 'aarch64') or (python_full_version >= '3.15' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and platform_python_implementation != 'CPython') or (python_full_version >= '3.14' and sys_platform != 'linux')",
-    "(python_full_version < '3.14' and platform_machine != 'aarch64') or (python_full_version < '3.14' and platform_python_implementation != 'CPython') or (python_full_version < '3.14' and sys_platform != 'linux')",
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "(python_full_version >= '3.15' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version >= '3.14' and platform_python_implementation != 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
+    "python_full_version < '3.14' and sys_platform == 'win32'",
+    "(python_full_version < '3.14' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version < '3.14' and platform_python_implementation != 'CPython' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 dependencies = [
     { name = "numpy", marker = "python_full_version >= '3.15' or platform_machine != 'aarch64' or platform_python_implementation != 'CPython' or sys_platform != 'linux'" },
