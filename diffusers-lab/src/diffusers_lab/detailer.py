@@ -39,6 +39,7 @@ class SDXLDetailer(object):
         processor = Sam3Processor.from_pretrained("facebook/sam3")
 
         inputs = processor(image, text=self._segment_prompt, return_tensors="pt").to("cuda")
+        print(f"Detailer: Segmenting using prompt '{self._segment_prompt}'")
         with torch.no_grad():
             outputs = model(**inputs)
         semantic_results = processor.post_process_semantic_segmentation(
