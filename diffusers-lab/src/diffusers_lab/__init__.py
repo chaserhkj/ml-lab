@@ -25,7 +25,7 @@ def grow_bbox_within_size(bbox: BBox, growth_ratio: float, size: tuple[int, int]
     growth_w = int((bbox[2] - bbox[0]) * growth_ratio)
     growth_h = int((bbox[3] - bbox[1]) * growth_ratio)
     new_bbox = np.array(bbox, dtype=np.uint32) + [-growth_w, -growth_h, growth_w, growth_h]
-    if not size is None:
+    if size is not None:
         new_bbox = np.clip(new_bbox, 0, [size[0], size[1], size[0], size[1]])
     new_bbox = tuple(new_bbox.tolist())
     return new_bbox
