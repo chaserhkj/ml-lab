@@ -61,6 +61,8 @@ class SDXLDetailer(object):
             bbox = results["boxes"][i].cpu().numpy().tolist()
             print(f"Detailer: Segmented {s.item()} @ {bbox}")
         masks = results["masks"]
+        if len(masks) == 0:
+            return image
         print(f"Detailer: Segmented {len(masks)} masks")
         if merge_mask:
             print("Detailer: Merging all masks")
