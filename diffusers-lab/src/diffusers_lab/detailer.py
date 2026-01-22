@@ -51,9 +51,10 @@ class SDXLDetailer(object):
         print(f"Detailer: Segmented {len(masks)} masks")
         if merge_mask:
             print("Detailer: Merging all masks")
-            mask_combined = torch.any(masks, dim=0).cpu()
+            mask_combined = torch.any(masks, dim=0)
             masks = mask_combined.unsqueeze(0)
 
+        masks = masks.cpu()
         detailed = image.copy()
         for mask in masks:
             detailed_patch, blend_mask, box = self.detail_single_patch(
@@ -89,13 +90,13 @@ class SDXLDetailer(object):
         if preview_mask:
             preview_mask(mask_image)
         box = boxes[0].cpu().numpy()
-        print(f"Detailer: Processing mask with bbox {tuple(box)}")
+        print(f"Detailer: Processing mask with bbox {box.tolist()}")
         growth_w = int((box[2] - box[0]) * context_ratio)
         growth_h = int((box[3] - box[1]) * context_ratio)
         box = box + [-growth_w, -growth_h, growth_w, growth_h]
         box = np.clip(box, 0, [image.size[0], image.size[1], image.size[0], image.size[1]])
         box = box.astype(np.uint32)
-        print(f"Detailer: Expanded context bbox to {tuple(box)}")
+        print(f"Detailer: Expanded context bbox to {box.tolist()}")
         cropped = image.crop(tuple(box))
         cropped_mask = mask_image.crop(tuple(box))
 
@@ -121,5 +122,5 @@ class SDXLDetailer(object):
         assert isinstance(detailed_patch, Image.Image) 
         detailed_final = detailed_patch.resize(cropped.size, Image.Resampling.LANCZOS)
         blend_mask = cropped_mask.filter(ImageFilter.GaussianBlur(radius=soft_blend_radius))
-        print(f"Detailer: Finished mask with bbox {tuple(box)}")
+        print(f"Detailer: Finished mask with bbox {box.tolist()}")
         return (detailed_final, blend_mask, tuple(box))
