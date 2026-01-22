@@ -7,7 +7,12 @@ from transformers import Sam3Processor, Sam3Model, logging
 from PIL import Image, ImageFilter
 from typing import Any
 
-from . import scale_largest_dimension_to, preview_image, shrink_bbox_to_div
+from . import (
+    scale_largest_dimension_to,
+    preview_image,
+    shrink_bbox_to_div,
+    shrink_bbox_to_ratio
+)
 from .conditioning import get_sdxl_prompt_embeds
 # pyright: reportUnknownMemberType=none, reportAny=none, reportExplicitAny=none
 # pyright: reportUnknownArgumentType=none, reportUnknownVariableType=none
@@ -34,6 +39,7 @@ class SDXLDetailer(object):
                 additional_diffusion_params: dict[str, Any] | None = None,
                 preview_mask: bool = False,
                 crop_64_div: bool = True,
+                force_patch_ratio: float | None = None,
                 soft_blend_radius: int = 3) -> Image.Image:
         model = Sam3Model.from_pretrained("facebook/sam3")
         model = model.to("cuda") # pyright: ignore[reportArgumentType]
@@ -70,6 +76,7 @@ class SDXLDetailer(object):
                 additional_diffusion_params = additional_diffusion_params,
                 preview_mask = preview_mask,
                 crop_64_div = crop_64_div,
+                force_patch_ratio = force_patch_ratio,
                 soft_blend_radius = soft_blend_radius,
             )
             detailed.paste(detailed_patch, (int(box[0]), int(box[1])), blend_mask)
@@ -87,6 +94,7 @@ class SDXLDetailer(object):
             additional_diffusion_params: dict[str, Any] | None = None,
             preview_mask: bool = False,
             crop_64_div: bool = True,
+            force_patch_ratio: float | None = None,
             soft_blend_radius: int = 3) -> tuple[Image.Image, Image.Image, tuple[int, int, int, int]]:
         boxes = masks_to_boxes(mask.unsqueeze(0))
         mask_image = Image.fromarray(mask.numpy().astype(np.uint8)*255, mode="L")
@@ -98,8 +106,11 @@ class SDXLDetailer(object):
         growth_h = int((box[3] - box[1]) * context_ratio)
         box = box + [-growth_w, -growth_h, growth_w, growth_h]
         box = np.clip(box, 0, [image.size[0], image.size[1], image.size[0], image.size[1]])
-        box = box.astype(np.uint32).tolist()
+        box = tuple(box.astype(np.uint32).tolist())
         print(f"Detailer: Expanded context bbox to {box}")
+        if force_patch_ratio is not None:
+            box = shrink_bbox_to_ratio(box, force_patch_ratio)
+            print(f"Detailer: Force ratio {force_patch_ratio}, final bbox: {box}")
         cropped = image.crop(tuple(box))
         cropped_mask = mask_image.crop(tuple(box))
 
@@ -139,7 +150,7 @@ class SDXLDetailer(object):
         params.update(prompt_embeds)
         if additional_diffusion_params:
             params.update(additional_diffusion_params)
-        if not generator is None:
+        if generator is not None:
             params["generator"] = generator
         detailed_patch = inpaint_pipe(**params)[0][0] # pyright: ignore[reportIndexIssue]
         assert isinstance(detailed_patch, Image.Image) 
