@@ -13,7 +13,7 @@ from sys import stderr
 
 kernel_deps = [
     "ipykernel", "ipywidgets", "python-dotenv",
-    "jupyter_paint_segment", "ipyevents", "ipycanvas", "orjson"
+    "ipyevents", "ipycanvas", "orjson"
 ]
 
 def sh(command: str) -> None:
