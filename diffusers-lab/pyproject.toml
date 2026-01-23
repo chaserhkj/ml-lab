@@ -12,7 +12,8 @@ dependencies = [
     "accelerate",
     "safetensors",
     "jinja2",
-    "compel"
+    "compel",
+    "spandrel",
 ]
 
 [project.optional-dependencies]
