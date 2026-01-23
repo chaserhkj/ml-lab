@@ -300,7 +300,36 @@ class MaskDrawer:
         self.canvas.on_mouse_down(self._on_mouse_down)
         self.canvas.on_mouse_move(self._on_mouse_move)
         self.canvas.on_mouse_up(self._on_mouse_up)
-    
+        self._setup_keyboard_handler()
+
+    def _setup_keyboard_handler(self):
+        """Setup keyboard event handlers."""
+        self.canvas.on_key_down(self._on_key_down)
+
+    def _on_key_down(self, key, shift, ctrl, meta):
+        """Handle keyboard input for tool selection."""
+        key = key.lower()
+        
+        if key == 'd' and not shift and  ctrl and not meta:
+            self._on_undo_click(None)
+        elif key == 'b' and not shift and not ctrl and not meta:
+            self._on_pen_click(None)
+        elif key == 'v' and not shift and not ctrl and not meta:
+            self._on_eraser_click(None)
+        elif key == 'd' and not shift and not ctrl and not meta:
+            self._on_rect_click(None)
+        elif key == 'g' and not shift and not ctrl and not meta:
+            self._on_grab_click(None)
+        elif key == 'b' and shift and not ctrl and not meta:
+            self._on_zoom_in_click(None)
+        elif key == 'v' and shift and not ctrl and not meta:
+            self._on_zoom_out_click(None)
+        elif key == 'd' and shift and not ctrl and not meta:
+            if self.pen_size_slider.value > 2:
+                self.pen_size_slider.value -= 2
+        elif key == 'g' and shift and not ctrl and not meta:
+            self.pen_size_slider.value += 2
+
     def _update_tool_buttons(self):
         """Update button styles to show current tool."""
         style_map = {
@@ -625,16 +654,12 @@ class MaskDrawer:
             )
     
     def _draw_pan_preview(self, x, y):
-        dx = x - self.pan_start[0]
-        dy = y - self.pan_start[1]
-        invert_x = self.pan_start[0] - dx
-        invert_y = self.pan_start[1] - dy
         with hold_canvas(self.mask_canvas):
             self.mask_canvas.clear()
             self.mask_canvas.stroke_style = 'white'
             self.mask_canvas.line_width = 2
             x1, y1 = self._screen_to_canvas_coords(*self.pan_start)
-            x2, y2 = self._screen_to_canvas_coords(invert_x, invert_y)
+            x2, y2 = self._screen_to_canvas_coords(x, y)
             self.mask_canvas.stroke_line(x1, y1, x2, y2)
     
     def _apply_rectangle(self, x1, y1, x2, y2):
