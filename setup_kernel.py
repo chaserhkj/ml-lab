@@ -12,7 +12,8 @@ import argparse
 from sys import stderr
 
 kernel_deps = [
-    "ipykernel", "sidecar", "ipywidgets", "python-dotenv"
+    "ipykernel", "ipywidgets", "python-dotenv",
+    "jupyter_paint_segment", "ipyevents", "ipycanvas", "orjson"
 ]
 
 def sh(command: str) -> None:
@@ -33,7 +34,7 @@ def main(sub_lab: str) -> int:
     os.environ["VIRTUAL_ENV"] = f"{lab_dir}/.venv"
     sh("uv venv --clear")
     sh(f"uv sync --extra {runtime_type}-runtime")
-    sh(f"uv pip install {" ".join(kernel_deps)}")
+    sh(f"uv pip install --index-strategy unsafe-best-match {" ".join(kernel_deps)}")
     sh("uv run python3 -m ipykernel install --prefix /usr/local"+
         f" --env VIRTUAL_ENV {lab_dir}/.venv"+
         f" --name {sub_lab} --display-name 'Python ({sub_lab})'")
