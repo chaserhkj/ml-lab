@@ -14,6 +14,7 @@ dependencies = [
     "jinja2",
     "compel",
     "spandrel",
+    "peft",
 ]
 
 [project.optional-dependencies]
